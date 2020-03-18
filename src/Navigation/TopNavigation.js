@@ -1,16 +1,19 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import Typography from 'material-ui/Typography';
 import NoteIcon from '@material-ui/icons/Note';
-
-
 import CodeIcon from '@material-ui/icons/Code';
+<<<<<<< HEAD:src/Navigation/TopNavigation.js
 
 import SmartClauseList from '../ClauseEditor/SmartClauseList';
 import TemplateList from '../TemplateEditor/TemplateList';
+=======
+import SmartClauseList from './SmartClauseList';
+import TemplateList from './TemplateList';
+>>>>>>> ac9c685e05e1da79eb9a84a8fc58f4dc92595f3b:src/TopNavigation.js
 
 function TabContainer(props) {
   return (
@@ -35,18 +38,12 @@ const styles = theme => ({
 /**
  * Manages the tabs across the top of the application
  */
-class TopNavigation extends Component {
-  state = {
-    value: 0,
+  const  TopNavigation = ({ classes }) => {
+  
+  const [value, setValue] = useState(0);
+  const handleChange = (event, value) => {
+    setValue( value );
   };
-
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { value } = this.state;
 
     return (
       <div className={classes.root}>
@@ -54,7 +51,7 @@ class TopNavigation extends Component {
         <Tab label="Cicero Word Add in"/>
       </AppBar>
         <AppBar position="static">
-          <Tabs value={value} onChange={this.handleChange} scrollable scrollButtons="off">
+          <Tabs value={value} onChange={handleChange} scrollable scrollButtons="off">
             <Tab label="Smart Clauses" icon={<NoteIcon />} />
             <Tab label="Templates" icon={<CodeIcon />} />
           </Tabs>
@@ -63,7 +60,6 @@ class TopNavigation extends Component {
         {value === 1 && <TabContainer><TemplateList/></TabContainer>}
       </div>
     );
-  }
 }
 
 TopNavigation.propTypes = {
